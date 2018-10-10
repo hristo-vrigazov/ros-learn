@@ -1,0 +1,8 @@
+prefix=/home/dandree2/catkin_ws/src/learning_tf/cmake-build-debug/devel
+
+Name: learning_tf
+Description: Description of learning_tf
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/dandree2/catkin_ws/src/learning_tf/cmake-build-debug/devel/lib 
+Requires: 
