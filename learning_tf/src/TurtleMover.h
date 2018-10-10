@@ -7,20 +7,22 @@
 
 
 #include <ros/timer.h>
+#include <ros/publisher.h>
 
 class TurtleMover {
 private:
     ros::Timer timer;
-
+    ros::Publisher publisher;
+    double distance;
 
 public:
-    TurtleMover();
+    TurtleMover(int period = 1, double distance = 1.3);
 
     void run();
 
     void move(double distance);
 
-    void timerCallback(const ros::TimerEvent&);
+    void timerCallback(const ros::TimerEvent& timerEvent);
 };
 
 
