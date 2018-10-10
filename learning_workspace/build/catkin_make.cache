@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/dandree2/github/ros-learn/learning_workspace/devel -DCMAKE_INSTALL_PREFIX=/home/dandree2/github/ros-learn/learning_workspace/install -G Unix Makefiles
