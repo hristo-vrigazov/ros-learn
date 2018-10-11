@@ -15,7 +15,14 @@ private:
     ros::Publisher publisher;
     double distance;
 
+    ros::NodeHandle nodeHandle;
+
 public:
+	TurtleMover() = delete;
+	//copy const
+	//move const 
+	//move operator
+	//assignment operator 
     TurtleMover(int period = 1, double distance = 1.3);
 
     void run();

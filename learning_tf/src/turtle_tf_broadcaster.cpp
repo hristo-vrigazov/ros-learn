@@ -7,7 +7,8 @@ int main(int argc, char **argv) {
     std::cout << "Creating turtle mover" << std::endl;
     TurtleMover turtleMover;
     std::cout << "Running turtle mover" << std::endl;
-    turtleMover.run();
+    //turtleMover.run();
+    ros::spin();
     return 0;
 
 };

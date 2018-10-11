@@ -2,6 +2,12 @@
 // Created by dandree2 on 10.10.18.
 //
 
+//ros launch
+//c++ default , delete operators and constructors 
+//use initializer lists, 
+//use member var or reference to nodehandle
+//show two turtles 
+
 #include <iostream>
 #include <ros/ros.h>
 #include "TurtleMover.h"
@@ -11,10 +17,11 @@ void TurtleMover::run() {
     ros::spin();
 }
 
-TurtleMover::TurtleMover(int period, double distance) : distance(distance) {
-    ros::NodeHandle nodeHandle("turtle_mover");
-    this->publisher = nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1);
-    this->timer = nodeHandle.createTimer(ros::Duration(period), & TurtleMover::timerCallback, this);
+TurtleMover::TurtleMover(int period, double distance) : distance(distance),
+    nodeHandle("~"),
+    publisher(nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1)){
+    //this->publisher = nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1);
+    this->timer = nodeHandle.createTimer(ros::Duration(period), &TurtleMover::timerCallback, this);
 }
 
 void TurtleMover::move(double distance) {
