@@ -29,7 +29,7 @@ public:
 	TurtleMover& operator=(TurtleMover&& other) = delete;
     TurtleMover& operator=(TurtleMover& other) = delete;
 
-    TurtleMover(ros::NodeHandle nodeHandle, int period, double distance);
+    TurtleMover(ros::NodeHandle nodeHandle, int period);
 
     void move(double distance);
 

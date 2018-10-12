@@ -2,12 +2,10 @@
 // Created by dandree2 on 10.10.18.
 //
 
-//+ ros launch
-//+ c++ default, delete operators and constructors
-//+ use initializer lists,
-//+ use member var or reference to nodehandle
-//+ show two turtles
-// move in an eight
+// parameters from launch file
+// start another node instance
+// remapping topic cmd/vel to the another instance
+// configure 8
 #include "TurtleMover.h"
 
 void TurtleMover::move(double distance) {
@@ -34,30 +32,19 @@ void TurtleMover::timerCallback(const ros::TimerEvent & timerEvent) {
     move(distance);
 }
 
-TurtleMover::TurtleMover(ros::NodeHandle nodeHandle, int period, double distance) :
-    distance(distance),
+TurtleMover::TurtleMover(ros::NodeHandle nodeHandle, int period) :
     nodeHandle(nodeHandle),
+    distance(nodeHandle.param<double>("distance", 1.3)),
     publisher(nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1)),
     timer(nodeHandle.createTimer(ros::Duration(period), &TurtleMover::timerCallback, this)) {
     ros::ServiceClient serviceClient;
     turtlesim::Spawn spawnRequest;
     spawnAnotherTurtle(nodeHandle, serviceClient, spawnRequest);
-
+    ROS_ERROR("%f",distance);
     serviceClient.call(spawnRequest);
 }
 
 void TurtleMover::spawnAnotherTurtle(ros::NodeHandle &nodeHandle, ros::ServiceClient &serviceClient,
                                      turtlesim::Spawn &spawnRequest) const {
-    bool serviceIsUp = ros::service::waitForService("spawn", ros::Duration(10));
 
-    if (!serviceIsUp) {
-        std::cout << "Spawn service did not come up in time!" << std::endl;
-        exit(-1);
-    }
-
-    serviceClient= nodeHandle.serviceClient<turtlesim::Spawn>("spawn");
-    spawnRequest.request.x = 2;
-    spawnRequest.request.y = 2;
-    spawnRequest.request.theta = 0.5;
-    spawnRequest.request.name = "turtle2";
 }
