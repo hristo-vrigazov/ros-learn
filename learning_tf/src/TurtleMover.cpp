@@ -12,10 +12,21 @@
 
 void TurtleMover::move(double distance) {
     std::cout << "Moving distance " << distance << std::endl;
-    geometry_msgs::Twist twist;
-    twist.linear.x = distance;
-    twist.angular.z = -0.6;
-    publisher.publish(twist);
+
+    // TODO: play with this value for smoother/faster drawing
+    int updateDegrees = 15;
+    int totalUpdates = 100;
+    double degrees = 0;
+
+    for (int i = 0; i < totalUpdates; i++) {
+        geometry_msgs::Twist twist;
+        twist.linear.x = distance;
+        twist.angular.z = sin((degrees / 100) * 2 * M_PI);
+        publisher.publish(twist);
+        degrees += updateDegrees;
+    }
+
+
 }
 
 void TurtleMover::timerCallback(const ros::TimerEvent & timerEvent) {

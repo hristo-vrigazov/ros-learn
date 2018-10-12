@@ -12,6 +12,7 @@
 #include <ros/ros.h>
 #include "geometry_msgs/Twist.h"
 #include "turtlesim/Spawn.h"
+#include "math.h"
 
 class TurtleMover {
 private:
