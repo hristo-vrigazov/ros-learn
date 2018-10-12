@@ -24,6 +24,7 @@ void TurtleMover::move(double distance) {
         twist.angular.z = sin(degrees * M_PI / 180.);
         publisher.publish(twist);
         degrees += updateDegrees;
+        ros::Duration(0.5).sleep();
     }
 
 
