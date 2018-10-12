@@ -8,3 +8,4 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 learning_tf/.idea/
+learning_tf/cmake-build-debug/devel/lib/learning_tf/
