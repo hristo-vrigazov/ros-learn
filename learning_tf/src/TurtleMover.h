@@ -19,13 +19,11 @@ private:
 
 public:
 	TurtleMover() = delete;
-	//copy const
-	//move const 
-	//move operator
-	//assignment operator 
-    TurtleMover(int period = 1, double distance = 1.3);
+	TurtleMover(const TurtleMover &) = delete;
+	TurtleMover(const TurtleMover &&) = delete;
+	TurtleMover& operator=(TurtleMover&& other) = delete;
 
-    void run();
+    TurtleMover(ros::NodeHandle nodeHandle, int period, double distance);
 
     void move(double distance);
 

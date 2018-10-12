@@ -3,35 +3,34 @@
 //
 
 //ros launch
-//c++ default , delete operators and constructors 
-//use initializer lists, 
-//use member var or reference to nodehandle
-//show two turtles 
+//+ c++ default, delete operators and constructors
+//+ use initializer lists,
+//+ use member var or reference to nodehandle
+//show two turtles
+// move in an eight
 
 #include <iostream>
 #include <ros/ros.h>
 #include "TurtleMover.h"
 #include "geometry_msgs/Twist.h"
 
-void TurtleMover::run() {
-    ros::spin();
-}
 
-TurtleMover::TurtleMover(int period, double distance) : distance(distance),
-    nodeHandle("~"),
-    publisher(nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1)){
-    //this->publisher = nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1);
-    this->timer = nodeHandle.createTimer(ros::Duration(period), &TurtleMover::timerCallback, this);
-}
 
 void TurtleMover::move(double distance) {
     std::cout << "Moving distance " << distance << std::endl;
     geometry_msgs::Twist twist;
     twist.linear.x = distance;
-    twist.angular.z = -3.14;
+    twist.angular.z = -0.6;
     publisher.publish(twist);
 }
 
 void TurtleMover::timerCallback(const ros::TimerEvent & timerEvent) {
     move(distance);
+}
+
+TurtleMover::TurtleMover(ros::NodeHandle nodeHandle, int period, double distance) :
+    distance(distance),
+    nodeHandle(nodeHandle),
+    publisher(nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1)),
+    timer(nodeHandle.createTimer(ros::Duration(period), &TurtleMover::timerCallback, this)) {
 }
