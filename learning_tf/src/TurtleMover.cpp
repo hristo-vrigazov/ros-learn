@@ -21,7 +21,7 @@ void TurtleMover::move(double distance) {
     for (int i = 0; i < totalUpdates; i++) {
         geometry_msgs::Twist twist;
         twist.linear.x = distance;
-        twist.angular.z = sin((degrees / 100) * 2 * M_PI);
+        twist.angular.z = sin(degrees * M_PI / 180.);
         publisher.publish(twist);
         degrees += updateDegrees;
     }
