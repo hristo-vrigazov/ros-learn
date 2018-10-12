@@ -36,6 +36,13 @@ TurtleMover::TurtleMover(ros::NodeHandle nodeHandle, int period, double distance
 
 void TurtleMover::spawnAnotherTurtle(ros::NodeHandle &nodeHandle, ros::ServiceClient &serviceClient,
                                      turtlesim::Spawn &spawnRequest) const {
+    bool serviceIsUp = ros::service::waitForService("spawn", ros::Duration(10));
+
+    if (!serviceIsUp) {
+        std::cout << "Spawn service did not come up in time!" << std::endl;
+        exit(-1);
+    }
+
     serviceClient= nodeHandle.serviceClient<turtlesim::Spawn>("spawn");
     spawnRequest.request.x = 2;
     spawnRequest.request.y = 2;
