@@ -19,6 +19,7 @@ private:
     ros::Timer timer;
     ros::Publisher publisher;
     double distance;
+    double period;
 
     ros::NodeHandle nodeHandle;
 
@@ -29,13 +30,12 @@ public:
 	TurtleMover& operator=(TurtleMover&& other) = delete;
     TurtleMover& operator=(TurtleMover& other) = delete;
 
-    TurtleMover(ros::NodeHandle nodeHandle, int period);
+    TurtleMover(ros::NodeHandle nodeHandle);
 
     void move(double distance);
 
     void timerCallback(const ros::TimerEvent& timerEvent);
 
-    void spawnAnotherTurtle(ros::NodeHandle &nodeHandle, ros::ServiceClient &serviceClient, turtlesim::Spawn &spawnRequest) const;
 };
 
 
