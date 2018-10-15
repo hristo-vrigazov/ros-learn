@@ -21,8 +21,9 @@ void TurtleMover::move(double distance) {
         twist.linear.x = distance;
         twist.angular.z = sin(degrees * M_PI / 180.);
         publisher.publish(twist);
-        degrees += updateDegrees;
-        ros::Duration(0.5).sleep();
+        degrees += (updateDegrees);
+        ros::Duration((M_PI * 2.) / 10.).sleep();
+        ROS_INFO("Iteration %d", i);
     }
 
 
