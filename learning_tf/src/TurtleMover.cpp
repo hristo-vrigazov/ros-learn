@@ -2,10 +2,9 @@
 // Created by dandree2 on 10.10.18.
 //
 
-// + parameters from launch file
-// + start another node instance
-// + remapping topic cmd/vel to the another instance
-// configure 8
+// transformation for rviz - using tf
+// subcribe for pose -> transform
+
 #include "TurtleMover.h"
 
 void TurtleMover::move(double distance) {
@@ -37,7 +36,7 @@ TurtleMover::TurtleMover(ros::NodeHandle nodeHandle) :
     nodeHandle(nodeHandle),
     period(nodeHandle.param<double>("period", 1.)),
     distance(nodeHandle.param<double>("distance", 1.3)),
-    publisher(nodeHandle.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 1)),
+    publisher(nodeHandle.advertise<geometry_msgs::Twist>("/cmd_vel", 1)),
     timer(nodeHandle.createTimer(ros::Duration(period), &TurtleMover::timerCallback, this)) {
     ros::ServiceClient serviceClient;
     turtlesim::Spawn spawnRequest;
