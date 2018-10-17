@@ -13,6 +13,9 @@
 #include "geometry_msgs/Twist.h"
 #include "turtlesim/Spawn.h"
 #include "math.h"
+#include <turtlesim/Pose.h>
+#include <tf/transform_broadcaster.h>
+
 
 class TurtleMover {
 private:
@@ -22,6 +25,13 @@ private:
     double period;
 
     ros::NodeHandle nodeHandle;
+    ros::Subscriber subscriber;
+
+    std::string turtleName;
+
+    int updateDegrees = 15;
+    int totalUpdates = 100;
+    double degrees = 0;
 
 public:
 	TurtleMover() = delete;
@@ -30,11 +40,13 @@ public:
 	TurtleMover& operator=(TurtleMover&& other) = delete;
     TurtleMover& operator=(TurtleMover& other) = delete;
 
-    TurtleMover(ros::NodeHandle nodeHandle);
+    TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName);
 
     void move(double distance);
 
     void timerCallback(const ros::TimerEvent& timerEvent);
+
+    void poseCallback(const turtlesim::PoseConstPtr& pose);
 
 };
 
