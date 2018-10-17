@@ -27,6 +27,9 @@ private:
     ros::NodeHandle nodeHandle;
     ros::Subscriber subscriber;
 
+    ros::Subscriber poseSubscriber;
+    ros::Publisher posePublisher;
+
     std::string turtleName;
 
     int updateDegrees = 15;
@@ -46,7 +49,9 @@ public:
 
     void timerCallback(const ros::TimerEvent& timerEvent);
 
-    void poseCallback(const turtlesim::PoseConstPtr& pose);
+    void tfPoseCallback(const turtlesim::PoseConstPtr &pose);
+
+    void poseCallback(const turtlesim::PoseConstPtr &pose);
 
 };
 

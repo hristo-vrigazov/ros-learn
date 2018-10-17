@@ -5,13 +5,11 @@
     <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_1" args="/turtle1">
         <param name="distance" type="double" value="1.1" />
         <param name="period" type="double" value="1" />
-        <!--<remap from="/cmd_vel" to="/turtle1/cmd_vel"/>-->
 
     </node>
     <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_2" args="/turtle2">
         <param name="distance" type="double" value="1.1" />
         <param name="period" type="double" value="1" />
-        <!--<remap from="/cmd_vel" to="/turtle2/cmd_vel"/>-->
     </node>
 
 

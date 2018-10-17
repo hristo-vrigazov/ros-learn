@@ -2,7 +2,7 @@
 // Created by dandree2 on 10.10.18.
 //
 
-// publish pose from current turtle to another topic
+// + publish pose from current turtle to another topic
 // publish point cloud
 // investigate why topics are not shown in RVIZ
 // + fix the eight
@@ -32,12 +32,15 @@ TurtleMover::TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName) :
     publisher(nodeHandle.advertise<geometry_msgs::Twist>(turtleName + "/cmd_vel", 1000)),
     timer(nodeHandle.createTimer(ros::Duration(2 * M_PI / 10), &TurtleMover::timerCallback, this)),
     turtleName(turtleName),
-    subscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::poseCallback, this)) {
+    subscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::tfPoseCallback, this)),
+    poseSubscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::poseCallback, this)),
+    posePublisher(nodeHandle.advertise<turtlesim::Pose>(turtleName + "/mirror_pose", 1000))
+    {
     ROS_INFO("Distance: %f",distance);
     ROS_INFO("Period: %f", period);
 }
 
-void TurtleMover::poseCallback(const turtlesim::PoseConstPtr &pose) {
+void TurtleMover::tfPoseCallback(const turtlesim::PoseConstPtr &pose) {
     ROS_INFO("Pose callback");
     static tf::TransformBroadcaster br;
     tf::Transform transform;
@@ -46,5 +49,9 @@ void TurtleMover::poseCallback(const turtlesim::PoseConstPtr &pose) {
     q.setRPY(0, 0, pose->theta);
     transform.setRotation(q);
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "base_link"));
+}
+
+void TurtleMover::poseCallback(const turtlesim::PoseConstPtr &poseConstPtr) {
+    posePublisher.publish(*poseConstPtr);
 }
 
