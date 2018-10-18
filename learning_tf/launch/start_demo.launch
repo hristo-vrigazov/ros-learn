@@ -2,12 +2,12 @@
     <node pkg="turtlesim" type="turtlesim_node" name="sim"/>
     <node pkg="rosservice" type="rosservice" name="sp" args="call --wait /spawn 7 7 0 turtle2" output="screen" />
 
-    <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_1" args="/turtle1">
+    <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_1" args="/turtle1 1">
         <param name="distance" type="double" value="1.1" />
         <param name="period" type="double" value="1" />
 
     </node>
-    <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_2" args="/turtle2">
+    <node pkg="learning_tf" type="turtle_tf_broadcaster" name="turtle_mover_2" args="/turtle2 2">
         <param name="distance" type="double" value="1.1" />
         <param name="period" type="double" value="1" />
     </node>

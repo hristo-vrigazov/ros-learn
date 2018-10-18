@@ -16,6 +16,7 @@
 #include <turtlesim/Pose.h>
 #include <tf/transform_broadcaster.h>
 
+#include "sensor_msgs/PointCloud.h"
 
 class TurtleMover {
 private:
@@ -30,11 +31,15 @@ private:
     ros::Subscriber poseSubscriber;
     ros::Publisher posePublisher;
 
+    ros::Publisher pointCloudPublisher;
+
     std::string turtleName;
+	std::string baseLinkPostfix;
 
     int updateDegrees = 15;
-    int totalUpdates = 100;
     double degrees = 0;
+
+    tf::TransformBroadcaster br;
 
 public:
 	TurtleMover() = delete;
@@ -43,7 +48,7 @@ public:
 	TurtleMover& operator=(TurtleMover&& other) = delete;
     TurtleMover& operator=(TurtleMover& other) = delete;
 
-    TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName);
+    TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName, std::string baseLinkPostfix);
 
     void move(double distance);
 

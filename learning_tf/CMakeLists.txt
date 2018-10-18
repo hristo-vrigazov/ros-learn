@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   tf
   turtlesim
+#  pcl_ros
 )
 
 ## System dependencies are found with CMake's conventions
@@ -198,6 +199,7 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(turtle_tf_broadcaster src/turtle_tf_broadcaster.cpp src/TurtleMover.cpp src/TurtleMover.h)
+add_executable(turtle_tf_broadcaster src/turtle_tf_broadcaster.cpp src/TurtleMover.cpp)
+#add_executable(point_cloud_creator)
 target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
 
