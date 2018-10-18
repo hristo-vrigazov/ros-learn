@@ -28,9 +28,6 @@ private:
     ros::NodeHandle nodeHandle;
     ros::Subscriber subscriber;
 
-    ros::Subscriber poseSubscriber;
-    ros::Publisher posePublisher;
-
     ros::Publisher pointCloudPublisher;
 
     std::string turtleName;

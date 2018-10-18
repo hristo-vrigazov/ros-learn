@@ -4,16 +4,11 @@
 // Created by dandree2 on 10.10.18.
 //
 
-// + publish pose from current turtle to another topic
-// + publish point cloud
-// ? investigate why topics are not shown in RVIZ
-// + fix the eight
-
 // generate wall point clouds - boundaries
 // separate point cloud in another file - use sensor_msg
-// base_link for the two turtles
+// + base_link for the two turtles
 // add laser on the turtle
-// publish static transform
+// publish static transform for the laset
 
 #include "TurtleMover.h"
 
@@ -42,8 +37,6 @@ TurtleMover::TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName, s
     turtleName(turtleName),
     baseLinkPostfix(baseLinkPostfix),
     subscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::tfPoseCallback, this)),
-    poseSubscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::poseCallback, this)),
-    posePublisher(nodeHandle.advertise<turtlesim::Pose>(turtleName + "/mirror_pose", 1000)),
     pointCloudPublisher(nodeHandle.advertise<sensor_msgs::PointCloud>("points2", 1)) {
     ROS_INFO("Distance: %f",distance);
     ROS_INFO("Period: %f", period);
@@ -58,8 +51,3 @@ void TurtleMover::tfPoseCallback(const turtlesim::PoseConstPtr &pose) {
     transform.setRotation(q);
     br.sendTransform(tf::StampedTransform(transform, ros::Time::now(), "world", "base_link" + baseLinkPostfix));
 }
-
-void TurtleMover::poseCallback(const turtlesim::PoseConstPtr &poseConstPtr) {
-    posePublisher.publish(*poseConstPtr);
-}
-
