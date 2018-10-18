@@ -28,8 +28,6 @@ private:
     ros::NodeHandle nodeHandle;
     ros::Subscriber subscriber;
 
-    ros::Publisher pointCloudPublisher;
-
     std::string turtleName;
 	std::string baseLinkPostfix;
 
@@ -53,7 +51,6 @@ public:
 
     void tfPoseCallback(const turtlesim::PoseConstPtr &pose);
 
-    void poseCallback(const turtlesim::PoseConstPtr &pose);
 
 };
 

@@ -906,9 +906,14 @@
 		<Unit filename="/home/dandree2/catkin_ws/src/learning_tf/src/TurtleMover.h">
 			<Option target="turtle_tf_broadcaster"/>
 		</Unit>
+		<Unit filename="/home/dandree2/catkin_ws/src/learning_tf/src/WallPointCloudGenerator.cpp">
+			<Option target="point_cloud_generator"/>
+		</Unit>
+		<Unit filename="/home/dandree2/catkin_ws/src/learning_tf/src/WallPointCloudGenerator.h">
+			<Option target="point_cloud_generator"/>
+		</Unit>
 		<Unit filename="/home/dandree2/catkin_ws/src/learning_tf/src/point_cloud_generator.cpp">
 			<Option target="point_cloud_generator"/>
-			<Option target="turtle_tf_broadcaster"/>
 		</Unit>
 		<Unit filename="/home/dandree2/catkin_ws/src/learning_tf/src/turtle_tf_broadcaster.cpp">
 			<Option target="turtle_tf_broadcaster"/>

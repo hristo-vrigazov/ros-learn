@@ -2,6 +2,11 @@
 // Created by dandree2 on 18.10.18.
 //
 
-int main(int argc, char **argv) {
+#include <ros/init.h>
 
+int main(int argc, char **argv) {
+    ros::init(argc, argv, "point_cloud_generator");
+
+    ros::spin();
+    return 0;
 }

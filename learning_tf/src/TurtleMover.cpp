@@ -36,8 +36,7 @@ TurtleMover::TurtleMover(ros::NodeHandle & nodeHandle, std::string turtleName, s
     timer(nodeHandle.createTimer(ros::Duration(2 * M_PI / 10), &TurtleMover::timerCallback, this)),
     turtleName(turtleName),
     baseLinkPostfix(baseLinkPostfix),
-    subscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::tfPoseCallback, this)),
-    pointCloudPublisher(nodeHandle.advertise<sensor_msgs::PointCloud>("points2", 1)) {
+    subscriber(nodeHandle.subscribe(turtleName + "/pose", 1000, &TurtleMover::tfPoseCallback, this)) {
     ROS_INFO("Distance: %f",distance);
     ROS_INFO("Period: %f", period);
 }

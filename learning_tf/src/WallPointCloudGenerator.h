@@ -1,0 +1,14 @@
+//
+// Created by dandree2 on 18.10.18.
+//
+
+#ifndef LEARNING_TF_WALLPOINTCLOUDGENERATOR_H
+#define LEARNING_TF_WALLPOINTCLOUDGENERATOR_H
+
+
+class WallPointCloudGenerator {
+
+};
+
+
+#endif //LEARNING_TF_WALLPOINTCLOUDGENERATOR_H
