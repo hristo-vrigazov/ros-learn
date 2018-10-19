@@ -12,5 +12,10 @@
         <param name="period" type="double" value="1" />
     </node>
 
+    <node pkg="learning_tf" type="point_cloud_generator" name="point_cloud_generator" >
+
+    </node>
+
+    <node pkg="rviz" type="rviz" name="rviz_demo" respawn="false" args="-d /work/Eclipse452PF_RTC604_Linux64/workspace/src/learning_tf/launch/demo.viz.rviz" />
 
 </launch>

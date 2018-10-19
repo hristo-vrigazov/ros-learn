@@ -4,11 +4,9 @@
 // Created by dandree2 on 10.10.18.
 //
 
-// generate wall point clouds - boundaries
-// separate point cloud in another file - use sensor_msg
-// + base_link for the two turtles
+// fix walls
 // add laser on the turtle
-// publish static transform for the laset
+// publish static transform for the laser
 
 #include "TurtleMover.h"
 
