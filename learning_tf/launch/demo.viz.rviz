@@ -43,11 +43,11 @@ Visualization Manager:
       Name: Grid
       Normal Cell Count: 0
       Offset:
-        X: 0
-        Y: 0
+        X: 6
+        Y: 6
         Z: 0
       Plane: XY
-      Plane Cell Count: 10
+      Plane Cell Count: 12
       Reference Frame: world
       Value: true
     - Class: rviz/Marker
@@ -69,10 +69,11 @@ Visualization Manager:
       Unreliable: false
       Value: false
       Visibility:
-        "": true
         Grid: true
         Image: true
         Marker: true
+        PointCloud: true
+        TF: true
         Value: true
       Zoom Factor: 1
     - Class: rviz/Image
@@ -179,10 +180,10 @@ Visualization Manager:
       Focal Shape Size: 0.0500000007
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.77479732
+      Pitch: 1.15979671
       Target Frame: base_link
       Value: Orbit (rviz)
-      Yaw: 3.86039042
+      Yaw: 4.91038084
     Saved: ~
 Window Geometry:
   Camera:

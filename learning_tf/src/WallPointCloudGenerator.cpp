@@ -22,8 +22,8 @@ WallPointCloudGenerator::WallPointCloudGenerator(ros::NodeHandle &nodeHandle) :
 void WallPointCloudGenerator::createPoints(int i, bool x) {
     for (float j = -AXIS_END_VALUE; j <= AXIS_END_VALUE; j += 0.1) {
         geometry_msgs::Point32 point;
-        point.x = x ? i : j;
-        point.y = x ? j : i;
+        point.x = (x ? i : j);
+        point.y = (x ? j : i);
         point.z = 0;
         pointCloud.points.push_back(point);
     }

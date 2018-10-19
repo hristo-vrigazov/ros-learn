@@ -17,7 +17,7 @@ private:
 
     sensor_msgs::PointCloud pointCloud;
 
-    const int AXIS_END_VALUE = 5;
+    const int AXIS_END_VALUE = 12;
 
 public:
     // delete unneeded constructors and operators
