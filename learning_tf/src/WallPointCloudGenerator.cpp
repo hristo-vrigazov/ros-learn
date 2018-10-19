@@ -12,18 +12,19 @@ WallPointCloudGenerator::WallPointCloudGenerator(ros::NodeHandle &nodeHandle) :
     pointCloud.header.frame_id = "world";
 
     //TODO: generate boundaries
-    createPoints(-AXIS_END_VALUE, true);
+    createPoints(0, true);
     createPoints(AXIS_END_VALUE, true);
-    createPoints(-AXIS_END_VALUE, false);
+    createPoints(0, false);
     createPoints(AXIS_END_VALUE, false);
 
 }
 
-void WallPointCloudGenerator::createPoints(int i, bool x) {
-    for (float j = -AXIS_END_VALUE; j <= AXIS_END_VALUE; j += 0.1) {
+void WallPointCloudGenerator::createPoints(float fixedValue, bool x) {
+    float offset = 0;
+    for (float j = offset; j <= AXIS_END_VALUE; j += 0.1) {
         geometry_msgs::Point32 point;
-        point.x = (x ? i : j);
-        point.y = (x ? j : i);
+        point.x = (x ? fixedValue : j);
+        point.y = (x ? j : fixedValue);
         point.z = 0;
         pointCloud.points.push_back(point);
     }

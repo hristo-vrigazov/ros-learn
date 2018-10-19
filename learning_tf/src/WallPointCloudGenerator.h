@@ -17,7 +17,7 @@ private:
 
     sensor_msgs::PointCloud pointCloud;
 
-    const int AXIS_END_VALUE = 12;
+    static const int AXIS_END_VALUE = 12;
 
 public:
     // delete unneeded constructors and operators
@@ -34,7 +34,7 @@ public:
     void timerCallback(const ros::TimerEvent& timerEvent);
 
     // if x is true, then the x coordinate is fixed with value equal to i
-    void createPoints(int i, bool x);
+    void createPoints(float fixedValue, bool x);
 };
 
 
