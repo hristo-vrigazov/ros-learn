@@ -200,8 +200,10 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 add_executable(turtle_tf_broadcaster src/turtle_tf_broadcaster.cpp src/TurtleMover.cpp)
-#add_executable(point_cloud_creator)
 target_link_libraries(turtle_tf_broadcaster ${catkin_LIBRARIES})
 
 add_executable(point_cloud_generator src/point_cloud_generator.cpp src/WallPointCloudGenerator.cpp)
 target_link_libraries(point_cloud_generator ${catkin_LIBRARIES})
+
+add_executable(laser_simulation_publisher src/laser_simulation_publisher.cpp src/LaserSimulationPublisher.cpp)
+target_link_libraries(laser_simulation_publisher ${catkin_LIBRARIES})

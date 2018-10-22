@@ -18,4 +18,11 @@
 
     <node pkg="rviz" type="rviz" name="rviz_demo" respawn="false" args="-d /work/Eclipse452PF_RTC604_Linux64/workspace/src/learning_tf/launch/demo.viz.rviz" />
 
+    <node pkg="tf" type="static_transform_publisher" name="laser1" args="0.1 0 0 0 0 0 /base_link1 /base_link1_laser 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="laser2" args="0.1 0 0 0 0 0 /base_link2 /base_link2_laser 100"/>
+
+    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher1" args="1">
+        <param name="range_max" type="double" value="50." />
+    </node>
+
 </launch>

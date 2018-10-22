@@ -7,7 +7,7 @@
 WallPointCloudGenerator::WallPointCloudGenerator(ros::NodeHandle &nodeHandle) :
     nodeHandle(nodeHandle),
     publisher(nodeHandle.advertise<sensor_msgs::PointCloud>("/obstacles", 1)),
-    timer(nodeHandle.createTimer(ros::Duration(1), &WallPointCloudGenerator::timerCallback, this)) {
+    timer(nodeHandle.createTimer(ros::Duration(0.001), &WallPointCloudGenerator::timerCallback, this)) {
 
     pointCloud.header.frame_id = "world";
 
