@@ -12,25 +12,38 @@
 #include <sensor_msgs/PointCloud.h>
 #include "sensor_msgs/LaserScan.h"
 #include "math.h"
+#include "tf/transform_listener.h"
 
-std::vector<geometry_msgs::Pose2D> convertToPolar(const sensor_msgs::PointCloudConstPtr &pointCloudConstPtr);
+// + separate laser scans
+// + multiple laser scans for a turtle - behind one (set yaw e.g.)
+
+
+std::vector<geometry_msgs::Pose2D> convertToPolar(const sensor_msgs::PointCloud &pointCloudConstPtr);
 
 class LaserSimulationPublisher {
 private:
+    std::string turtleId;
+    std::string laserId;
+
     ros::NodeHandle nodeHandle;
     ros::Subscriber poseSubscriber;
     ros::Subscriber obstaclesSubscriber;
     ros::Publisher laserScansPublisher;
+
+    unsigned int laserBeamCounts;
 
     float angleMin;
     float angleMax;
     float rangeMin;
     float rangeMax;
     float angleIncrement;
+
     float scanTime;
-    unsigned int laserBeamCounts;
 
     turtlesim::Pose pose;
+    tf::TransformListener tfTransformListener;
+
+    static const int AXIS_END_VALUE = 12;
 
 public:
     LaserSimulationPublisher() = delete;
@@ -39,7 +52,7 @@ public:
     LaserSimulationPublisher& operator=(LaserSimulationPublisher&& other) = delete;
     LaserSimulationPublisher& operator=(LaserSimulationPublisher& other) = delete;
 
-    LaserSimulationPublisher(ros::NodeHandle &nodeHandle, std::string turtleId);
+    LaserSimulationPublisher(ros::NodeHandle &nodeHandle, std::string turtleId, std::string laserId);
 
     void start();
 

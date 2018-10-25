@@ -18,11 +18,21 @@
 
     <node pkg="rviz" type="rviz" name="rviz_demo" respawn="false" args="-d /work/Eclipse452PF_RTC604_Linux64/workspace/src/learning_tf/launch/demo.viz.rviz" />
 
-    <node pkg="tf" type="static_transform_publisher" name="laser1" args="0.1 0 0 0 0 0 /base_link1 /base_link1_laser 100"/>
-    <node pkg="tf" type="static_transform_publisher" name="laser2" args="0.1 0 0 0 0 0 /base_link2 /base_link2_laser 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="laser11" args="0.1 0 0 0 0 0 /base_link1 /base_link1_laser_1 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="laser21" args="0.1 0 0 0 0 0 /base_link2 /base_link2_laser_1 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="laser12" args="-0.1 0 0 3.141592653589793 0 0 /base_link1 /base_link1_laser_2 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="laser22" args="-0.1 0 0 3.141592653589793 0 0 /base_link2 /base_link2_laser_2 100"/>
 
-    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher1" args="1">
-        <param name="range_max" type="double" value="50." />
+    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher11" args="1 1">
+    </node>
+
+    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher21" args="2 1">
+    </node>
+
+    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher12" args="1 2">
+    </node>
+
+    <node pkg="learning_tf" type="laser_simulation_publisher" name="laser_simulation_publisher22" args="2 2">
     </node>
 
 </launch>
